@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.movie.MovieListFragment">
+    tools:context=".ui.movie.lab2.MovieListFragment">
 
     <!-- TODO: Update blank fragment layout -->
 
@@ -32,7 +32,7 @@
         android:id="@+id/btnGoToApiMovieList"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Remote API movie search"
+        android:text="Lab 3 OMDBAPI"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

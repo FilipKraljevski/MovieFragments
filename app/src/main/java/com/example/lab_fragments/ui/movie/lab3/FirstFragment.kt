@@ -1,4 +1,4 @@
-package com.example.lab_fragments.ui.movie.remoteApi
+package com.example.lab_fragments.ui.movie.lab3
 
 import android.os.Bundle
 import android.view.View
@@ -6,27 +6,29 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import androidx.lifecycle.ViewModelProvider
 import com.example.lab_fragments.R
-import com.example.lab_fragments.adapter.ApiMovieAdapter
-import com.example.lab_fragments.databinding.FragmentApiMovieListBinding
-import com.example.lab_fragments.domain.movie.model.ApiMovie
+import com.example.lab_fragments.adapter.MovieAdapter
+import com.example.lab_fragments.databinding.FragmentFirstBinding
+import com.example.lab_fragments.domain.movie.model.Movie
 
 
-class ApiMovieListFragment : Fragment(R.layout.fragment_api_movie_list) {
+class FirstFragment : Fragment(R.layout.fragment_first) {
 
-    private var _binding: FragmentApiMovieListBinding? = null
+    private var _binding: FragmentFirstBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var moviesViewModel: ApiMoviesViewModel
+    private lateinit var moviesViewModel: MoviesViewModel
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        _binding = FragmentApiMovieListBinding.bind(view)
+        _binding = FragmentFirstBinding.bind(view)
 
-        val viewModelFactory = ApiMoviesViewModelFactory(requireContext())
-        moviesViewModel = ViewModelProvider(this, viewModelFactory)[ApiMoviesViewModel::class.java]
+        val viewModelFactory = MoviesViewModelFactory(requireContext())
+        moviesViewModel = ViewModelProvider(this, viewModelFactory)[MoviesViewModel::class.java]
 
-        var adapter: ApiMovieAdapter = ApiMovieAdapter()
+        var adapter: MovieAdapter = MovieAdapter()
         binding.list.adapter = adapter
+
+        //adapter.updateMovies(moviesViewModel.getMovieListApiLiveData().value!!)
 
         moviesViewModel.getMovieListApiLiveData().observe(viewLifecycleOwner) {
             adapter.updateMovies(it)
@@ -36,9 +38,9 @@ class ApiMovieListFragment : Fragment(R.layout.fragment_api_movie_list) {
             moviesViewModel.search(binding.editQuery.text.toString())
         }
 
-        adapter.setOnClickListener(object : ApiMovieAdapter.OnClickListener{
-            override fun onClick(model: ApiMovie ){
-                val fragment = ApiMovieDetailsFragment()
+        adapter.setOnClickListener(object : MovieAdapter.OnClickListener{
+            override fun onClick(model: Movie){
+                val fragment = SecondFragment()
                 val bundle = Bundle()
                 bundle.putString("API", model.id)
                 fragment.arguments = bundle

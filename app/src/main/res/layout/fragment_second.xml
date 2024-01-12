@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.movie.remoteApi.ApiMovieDetailsFragment">
+    tools:context=".ui.movie.lab3.SecondFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <ImageView
@@ -26,7 +26,7 @@
         app:layout_constraintTop_toBottomOf="@+id/movie_image" />
 
     <TextView
-        android:id="@+id/movie_id"
+        android:id="@+id/movie_year"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -43,7 +43,7 @@
         android:text="@{plant.name}"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/movie_id" />
+        app:layout_constraintTop_toBottomOf="@+id/movie_year" />
 
     <TextView
         android:id="@+id/movie_director"

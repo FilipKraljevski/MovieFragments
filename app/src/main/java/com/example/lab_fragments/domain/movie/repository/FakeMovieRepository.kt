@@ -1,20 +1,19 @@
 package com.example.lab_fragments.domain.movie.repository
 
 import com.example.lab_fragments.domain.movie.data.FakeMovieApi
-import com.example.lab_fragments.domain.movie.model.Movie
-import com.example.lab_fragments.domain.movie.data.moviesList
+import com.example.lab_fragments.domain.movie.model.FakeMovie
 
-class MovieFakeRepository(private val fakeMovieApi: FakeMovieApi) {
+class FakeMovieRepository(private val fakeMovieApi: FakeMovieApi) {
 
-    fun getAllMovies(): List<Movie>{
+    fun getAllMovies(): List<FakeMovie>{
         return fakeMovieApi.getAllMovies()
     }
 
-    fun addMovie(movie: Movie){
+    fun addMovie(movie: FakeMovie){
        fakeMovieApi.addMovie(movie)
     }
 
-    fun getMovie(id: String): Movie{
+    fun getMovie(id: String): FakeMovie{
         return fakeMovieApi.getAllMovies().find { m -> m.id == id}!!
     }
 }

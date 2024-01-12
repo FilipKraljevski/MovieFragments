@@ -6,20 +6,20 @@ import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.commit
 import com.example.lab_fragments.dialog.AddNewMovieDialog
 import com.example.lab_fragments.domain.movie.data.FakeMovieApiProvider
-import com.example.lab_fragments.domain.movie.model.Movie
+import com.example.lab_fragments.domain.movie.model.FakeMovie
 import com.example.lab_fragments.domain.movie.data.moviesList
-import com.example.lab_fragments.domain.movie.repository.MovieFakeRepository
-import com.example.lab_fragments.ui.movie.MovieListFragment
+import com.example.lab_fragments.domain.movie.repository.FakeMovieRepository
+import com.example.lab_fragments.ui.movie.lab2.MovieListFragment
 
 class MainActivity : AppCompatActivity(), AddNewMovieDialog.AddNewMovieDialogListener {
 
-    private lateinit var repository: MovieFakeRepository
+    private lateinit var repository: FakeMovieRepository
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        repository = MovieFakeRepository(FakeMovieApiProvider.getFakeMovieApi())
+        repository = FakeMovieRepository(FakeMovieApiProvider.getFakeMovieApi())
 
         if(savedInstanceState == null){
             supportFragmentManager.commit {
@@ -37,18 +37,8 @@ class MainActivity : AppCompatActivity(), AddNewMovieDialog.AddNewMovieDialogLis
         poster: String
     ) {
         val id = moviesList().size + 1;
-        val movie = Movie(poster, title, id.toString(), plot, director, actors)
+        val movie = FakeMovie(poster, title, id.toString(), plot, director, actors)
         repository.addMovie(movie)
-        /*val fragment = MovieListFragment()
-        val bundle = Bundle()
-        bundle.putString("ID", id.toString())
-        bundle.putString("poster", poster)
-        bundle.putString("title", title)
-        bundle.putString("plot", plot)
-        bundle.putString("director", director)
-        bundle.putString("actors", actors)
-        fragment.arguments = bundle
-        println(moviesList())*/
         supportFragmentManager.commit(){
             replace(R.id.fragmentContainerView,  MovieListFragment())
             setReorderingAllowed(true)
